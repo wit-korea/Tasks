@@ -27,7 +27,6 @@ def list_dir_opt(path, opt):
 
 
 def search_dir(root, dirs, files, opt, path):
-    print("### root : ", root)
     if len(dirs) > 0:
         for dir_name in dirs:
             for option in opt:
