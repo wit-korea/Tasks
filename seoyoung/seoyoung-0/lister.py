@@ -54,7 +54,7 @@ def main():
                         print_list(file_list)
                 elif second.startswith("ignore"):
                         third=second[7:].split('-')
-                        print(third)
+                        print("ignored:",third)
                         searchTwo(searchDir, third)
                         print_list(file_list)
                         
