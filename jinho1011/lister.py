@@ -24,6 +24,7 @@ def list_dir(path):
 def list_dir_opt(path, opt):
     for (root, dirs, files) in os.walk(path):
         search_dir(root, dirs, files, opt, path)
+        # made search_dir func to use "return" when option endswith "/"
 
 
 def search_dir(root, dirs, files, opt, path):
