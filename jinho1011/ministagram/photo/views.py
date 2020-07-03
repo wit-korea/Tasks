@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.view.generic.list import ListView
-from django.view.generic.edit import UpdateView, CreateView, DeleteView
-from django.view.generic.detail import DetailView
+from django.views.generic.list import ListView
+from django.views.generic.edit import UpdateView, CreateView, DeleteView
+from django.views.generic.detail import DetailView
 from .models import Photo
 
 
