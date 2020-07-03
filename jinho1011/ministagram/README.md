@@ -1,0 +1,3 @@
+# Ministagram
+
+## Django Study
