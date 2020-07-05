@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.detail import DetailView
@@ -16,6 +16,14 @@ class PhotoCreate(CreateView):
     fields = ['text', 'image']          # 생성 시 채워야 할 필드
     template_name_suffix = '_create'    # 연결될 템플릿 이름은 bookmark_create
     succress_url = '/'                  # 성공하면 메인 페이지로 return
+
+    def form_valid(self, form):
+        form.instance.author_id = self.request.user.id
+        if form.is_valid():
+            form.intance.save()
+            return redirect('/')
+        else:
+            return self.render_to_response({'form': form})
 
 
 class PhotoUpdate(UpdateView):
