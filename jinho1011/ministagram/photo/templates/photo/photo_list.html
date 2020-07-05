@@ -5,25 +5,35 @@
 
 {% block content %}
 
-{% comment %} <div class="container">
-    <div class="row">
-        <div class="col">
-            {% for object in object_list %}
-            <div class="card">
-                {{ object.author }}
-                <img src="{{ object.image.url }}">
-                {{ object.text }}
-                {{ object.created }}
-                {{ object.updated }}
+<div class="container">
+    {% for object in object_list %}
 
-                <div class="list">
-                    <a href="{% url 'photo:detail' object.id %}">댓글</a>
-                    <a href="{% url 'photo:update' object.id %}">수정</a>
-                    <a href="{% url 'photo:delete' object.id %}">삭제</a>
-                </div>
+    <div class="box">
+        <div class="photo-header">
+            {{ object.author }}
+        </div>
+        <div class="photo-img">
+            <img src="{{ object.image.url }}">
+        </div>
+        <div class="photo-content">
+            <div class="photo-text">
+                {{ object.text }}
             </div>
-            {% endfor %}
+            <div class="photo-created">
+                {{ object.created }}
+            </div>
+        </div>
+        <div class="photo-comment">
+            <div class="list">
+                <a href="{% url 'photo:detail' object.id %}">댓글</a>
+                <a href="{% url 'photo:update' object.id %}">수정</a>
+                <a href="{% url 'photo:delete' object.id %}">삭제</a>
+            </div>
         </div>
     </div>
-</div> {% endcomment %}
+
+    {% endfor %}
+
+</div>
+
 {% endblock %}
