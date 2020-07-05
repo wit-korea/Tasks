@@ -1,0 +1,18 @@
+.inputGroup {
+    margin: 5px 0;
+    margin-bottom : 15px;
+    width: 200px;
+    height: 40px;
+    display: block;
+}
+#inputContainer {
+    text-align: center;
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+#btnSubmit {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+}
