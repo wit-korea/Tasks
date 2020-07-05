@@ -2,3 +2,8 @@
     border-bottom: 1px solid #dbdbdb;
     margin-bottom: 20px;
 }
+
+body,
+html {
+    background-color: #fafafa !important;
+}
