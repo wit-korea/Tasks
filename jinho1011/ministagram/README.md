@@ -1,5 +1,5 @@
 # Ministagram
-
+****
 ## Django Study
 ### manage.py
 - `python manage.py migrate` : 생성된 프로젝트에 대한 데이터베이스 초기화
