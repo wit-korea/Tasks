@@ -32,3 +32,6 @@
 > NodeJS는 아무것도 없고 레고처럼(?) 조립해야댐
 - 리얼타임, API, 커스터마이징이 많이 필요하다 => NodeJS
 - CRUD 정도만 활용한다 => Django
+
+### 기타
+- 프로젝트마다 적절한 gitignore 생성 : https://www.toptal.com/developers/gitignore (pycache등을 git add에서 제외되도록 해줌)
