@@ -4,8 +4,9 @@ from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.detail import DetailView
 from .models import Photo
 
-
 # 가장 메인에서 보여줄 로직
+
+
 class PhotoList(ListView):
     model = Photo
     template_name_suffic = '_list'
