@@ -9,78 +9,85 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
 	<link rel="stylesheet" href="{% static 'css/base.css' %}">
-	<link rel="stylesheet" href="{% static 'css/index.css' %}">
 	<script src="https://kit.fontawesome.com/bf5f0efbc3.js" crossorigin="anonymous"></script>
 	<title> {% block title %} {% endblock %} </title>
 </head>
 
 <body>
+	<nav class="navbar" role="navigation" aria-label="main navigation">
+		<div class="container">
+			<div class="navbar-brand">
+				<a class="navbar-item" href="/">
+					<img src="{% static 'images/instagram-logo.png' %}" width="112" height="28">
+				</a>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="#">ministagram</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+				<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+					data-target="navbarBasicExample">
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+				</a>
+			</div>
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item active">
-					<a class="nav-link" href="{% url 'photo:index' %}">Home <span class="sr-only">(current)</span></a>
-				</li>
-				{% if user.is_authenticated %}
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'photo:create' %}">사진 올리기</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
-				</li>
-				{% else %}
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'accounts:signup' %}">Signup</a>
-				</li>
-				{% endif %}
-				<!-- <li class="nav-item">
-	        <a class="nav-link" href="{% url 'accounts:login' %}}">Login</a>
-		  </li>
-		  <li class="nav-item">
-	        <a class="nav-link" href="{% url 'accounts:logout' %}}">Logout</a>
-	      </li> -->
-			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search" placeholder="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
+			{% if user.is_authenticated %}
+
+			<div id="navbarBasicExample" class="navbar-menu">
+				<div class="navbar-start">
+					<a class="navbar-item" href="{% url 'photo:index' %}">
+						<span class="icon">
+							<i class="fas fa-home"></i>
+						</span>
+					</a>
+
+					{% comment %} 사진 올리기 {% endcomment %}
+					<a class="navbar-item" href="{% url 'photo:create' %}">
+						<span class="icon">
+							<i class="fas fa-camera-retro"></i>
+						</span>
+					</a>
+				</div>
+				<div class="navbar-end">
+					{% comment %} 로그아웃 {% endcomment %}
+					<a class="navbar-item" href="{% url 'accounts:logout' %}">
+						<span class="icon">
+							<button class="button is-primary is-small">Logout</button>
+						</span>
+					</a>
+				</div>
+			</div>
+
+			{% else %}
+
+			<div id="navbarBasicExample" class="navbar-menu">
+				<div class="navbar-start">
+					<a class="navbar-item" href="{% url 'photo:index' %}">
+						<span class="icon">
+							<i class="fas fa-home"></i>
+						</span>
+					</a>
+
+				</div>
+				<div class="navbar-end">
+					{% comment %} 로그인 {% endcomment %}
+					<a class="navbar-item" href="{% url 'accounts:login' %}">
+						<button class="button is-primary is-small">Login</button>
+					</a>
+
+
+					{% comment %} 회원가입 {% endcomment %}
+					<a class="navbar-item" href="{% url 'accounts:signup' %}">
+						<button class="button is-primary is-small">Join</button>
+					</a>
+				</div>
+			</div>
+
+			{% endif %}
 		</div>
 	</nav>
-	<div class='container'>
-		{% if messages %}
-		<div class="row">
-			<div class="col"></div>
-			<div class="col-6">
-				{% for message in messages %}
-				<div class="alert alert-{{message.tag}}">{{message}}</div>
-				{% endfor %}
-			</div>
-			<div class="col"></div>
-		</div>
-	</div>
-	{% endif %}
-	{% block content %}
-	{% endblock %}
 
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-	</script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-	</script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-	</script>
+	{% block content %}
+
+	{% endblock %}
 </body>
 
 </html>
