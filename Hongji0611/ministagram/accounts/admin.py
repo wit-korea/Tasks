@@ -1,3 +1,7 @@
 from django.contrib import admin
+from accounts.models import FollowRelation
 
-# Register your models here.
+class FollowRelationAdmin(admin.ModelAdmin):
+    list_display = ('follower', )
+
+admin.site.register(FollowRelation, FollowRelationAdmin)

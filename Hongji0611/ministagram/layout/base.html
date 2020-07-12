@@ -48,11 +48,15 @@
 					</a>
 				</div>
 				<div class="navbar-end">
+					{% comment %} 팔로우 {% endcomment %}
+					<a class="navbar-item" href="{% url 'accounts:relation' %}">
+						<button class="button is-primary is-small">Follow</button>
+					</a>
+
+
 					{% comment %} 로그아웃 {% endcomment %}
 					<a class="navbar-item" href="{% url 'accounts:logout' %}">
-						<span class="icon">
-							<button class="button is-primary is-small">Logout</button>
-						</span>
+						<button class="button is-primary is-small">Logout</button>
 					</a>
 				</div>
 			</div>
