@@ -45,12 +45,12 @@ class RelationCreateView(BaseView):
     def post(self, request):
         try:  # 상대방의 아이디가 존재하는지 확인
             user_id = request.POST.get('id', '')
-        except ValueError:  # 존재하지 않는 아이디
+        except:  # 존재하지 않는 아이디
             return self.response(message='잘못된 요청입니다.', status=400)
 
         try:  # 내 관계망이 존재하는 지
             relation = FollowRelation.objects.get(follower=request.user)
-        except FollowRelation.DoesNotExist:  # 없을 경우 새 객체 생성
+        except:  # 없을 경우 새 객체 생성
             relation = FollowRelation.objects.create(follower=request.user)
 
         try:  # 내 아이디일경우 팔로우 x
@@ -58,7 +58,7 @@ class RelationCreateView(BaseView):
                 raise IntegrityError
             relation.followee.add(user_id)  # 내 followee에 추가
             relation.save()
-        except IntegrityError:
+        except:
             return self.response(message='잘못된 요청입니다.', status=400)
 
         return self.response({})
@@ -71,12 +71,12 @@ class RelationDeleteView(BaseView):
     def post(self, request):
         try:  # 상대 아이디 존재 확인
             user_id = request.POST.get('id', '')
-        except ValueError:
+        except:
             return self.response(message="잘못된 요청입니다.", status=400)
 
         try:  # 나의 관계망이 존재하는지 확인
             relation = FollowRelation.objects.get(follower=request.user)
-        except FollowRelation.DoesNotExist:
+        except:
             return self.response(message="잘못된 요청입니다.", status=400)
 
         try:
@@ -84,7 +84,7 @@ class RelationDeleteView(BaseView):
                 raise IntegrityError
             relation.followee.remove(user_id)  # 언팔로우
             relation.save()
-        except IntegrityError:
+        except:
             return self.response(message="잘못된 요청입니다.", status=400)
 
         return self.response({})
@@ -121,7 +121,7 @@ class UserInfoGetView(BaseView):
         username = request.GET.get('username', '').strip()
         try:
             user = User.objects.get(username=username)
-        except user.DoesNotExist:
+        except:
             self.response(message="사용자를 찾을 수 없습니다.", status=404)
 
         return self.response({'username': username, 'email': user.email, 'id': user.id})
