@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="box">
+        <div class="photo-header">
+            {{ object.author }}
+        </div>
+        <div class="photo-img">
+            <img src="{{ object.image.url }}">
+        </div>
+        <div class="photo-content">
+            <div class="photo-text">
+                {{ object.text }}
+            </div>
+            <div class="photo-created">
+                {{ object.created }}
+            </div>
+        </div>
+        
+        <div class="photo-comment">
+            <div class="list">
+                {% if user == object.author %}
+                <a href="{% url 'photo:update' object.id %}">수정</a>
+                <a href="{% url 'photo:delete' object.id %}">삭제</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
