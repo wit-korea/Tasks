@@ -7,14 +7,25 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.views.generic.base import View
+from django.contrib.auth.models import User
 from django.http import HttpResponseForbidden
 from urllib.parse import urlparse
 from .models import Photo
+from accounts.models import FollowRelation
 
 
 class PhotoList(ListView):
-    model = Photo
     template_name_suffix = '_list'
+    queryset = Photo.objects.all()
+
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        context = super(PhotoList, self).get_context_data(**kwargs)
+        followers = FollowRelation.objects.get(
+            follower=user).followee.all()
+        context['object'] = self.queryset
+        context['followees'] = followers
+        return context
 
 
 class PhotoCreate(CreateView):
