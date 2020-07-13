@@ -48,6 +48,11 @@
 					</a>
 				</div>
 				<div class="navbar-end">
+					{% comment %} User Name {% endcomment %}
+					<span class="navbar-item" href="">
+							Hello, {{ user }}
+					</span>
+
 					{% comment %} 팔로우 {% endcomment %}
 					<a class="navbar-item" href="{% url 'accounts:relation' %}">
 						<button class="button is-primary is-small">Follow</button>
