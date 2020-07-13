@@ -11,9 +11,11 @@ from django.http import HttpResponseForbidden
 from urllib.parse import urlparse
 from .models import Photo
 
+
 class PhotoList(ListView):
     model = Photo
     template_name_suffix = '_list'
+
 
 class PhotoCreate(CreateView):
     model = Photo
@@ -29,6 +31,7 @@ class PhotoCreate(CreateView):
         else:
             return self.render_to_response({'form': form})
 
+
 class PhotoUpdate(UpdateView):
     model = Photo
     fields = ['text', 'image']
@@ -43,6 +46,7 @@ class PhotoUpdate(UpdateView):
         else:
             return super(PhotoUpdate, self).dispatch(request, *args, **kwargs)
 
+
 class PhotoDelete(DeleteView):
     model = Photo
     template_name_suffix = '_delete'
@@ -56,13 +60,15 @@ class PhotoDelete(DeleteView):
         else:
             return super(PhotoDelete, self).dispatch(request, *args, **kwargs)
 
+
 class PhotoDetail(DetailView):
     model = Photo
     template_name_suffix = '_detail'
 
+
 class PhotoLike(View):
     def get(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:    #로그인확인
+        if not request.user.is_authenticated:  # 로그인확인
             return HttpResponseForbidden()
         else:
             if 'photo_id' in kwargs:
@@ -77,9 +83,10 @@ class PhotoLike(View):
             path = urlparse(referer_url).path
             return HttpResponseRedirect(path)
 
+
 class PhotoFavorite(View):
     def get(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:    #로그인확인
+        if not request.user.is_authenticated:  # 로그인확인
             return HttpResponseForbidden()
         else:
             if 'photo_id' in kwargs:
