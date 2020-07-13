@@ -24,9 +24,12 @@
         </div>
         <div class="photo-comment">
             <div class="list">
+                
                 <a href="{% url 'photo:detail' object.id %}">댓글</a>
+                {% if user == object.author %}
                 <a href="{% url 'photo:update' object.id %}">수정</a>
                 <a href="{% url 'photo:delete' object.id %}">삭제</a>
+                {% endif %}
             </div>
         </div>
     </div>
