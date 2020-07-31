@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PhotoList, PhotoDelete, PhotoCreate, PhotoUpdate, PhotoDetail
+from .views import PhotoList, PhotoDelete, PhotoCreate, PhotoUpdate, PhotoDetail, PhotoLike, PhotoFavorite
 
 app_name = 'photo'
 
@@ -9,6 +9,9 @@ urlpatterns = [
     path("update/<int:pk>/",PhotoUpdate.as_view(), name ='update'),
     path("detail/<int:pk>/",PhotoUpdate.as_view(), name ='detail'),
     path("", PhotoList.as_view(),name='index'),
+    path("like/<int:photo_id>/",PhotoLike.as_view(),name = 'like'),
+    path("favorite/<int:photo_id>/",PhotoFavorite.as_view(),name = 'favorite'),
+
 ]
 
 # as_view() 함수는 클래스의 인스턴스 생성, 인스턴스의 dispatch() 호출 
